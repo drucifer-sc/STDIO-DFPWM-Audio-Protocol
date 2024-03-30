@@ -18,7 +18,7 @@ RFC 2119 keywords are used in this document to help reduce ambiguity, they are n
 This standard serves to provide framework for unifying and informing the layout of transmissions of stereo DFPWM content on modem channels to increase access to the general public while preserving the hobbyist usage.
 
 ## Technical details
-Stereo DFPWM Audio Protocol (SDAP) has two functional rulesets depending on the modem used:
+STDIO DFPWM Audio Protocol (SDAP) has two functional rulesets depending on the modem used:
 | Modem Type | Transmission Mode |
 | ---------- | ----------------- |
 | Ender      | Full-Power        |
