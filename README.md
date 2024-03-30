@@ -1,7 +1,9 @@
 # STDIO DFPWM Audio Protocol
 
 *Author: @TheDrucifer (Discord)*
+
 *Version: 1.0*
+
 *Last revised: 2024-03-3D*
 
 RFC 2119 keywords are used in this document to help reduce ambiguity, they are not capitalized as suggested in 2119.
@@ -9,7 +11,7 @@ RFC 2119 keywords are used in this document to help reduce ambiguity, they are n
 ## Quick information
 | Information |                             |
 | ----------- | --------------------------- |
-| Version     | 0.1                         |
+| Version     | 1.0                         |
 | Author      | @TheDrucifer (Discord)      |
 | Type        | STDIO DFPWM Audio Protocol  |
 | MIME        | `audio/sdap`                |
