@@ -71,7 +71,7 @@ modem.open(listen.ch)
 while true do
 local eventData={os.pullEvent("modem_message")}
 if eventData[3]==listen.ch and eventData[4]==listen.id then
-local unpack=string.unpack("s1s1s2",eventData[5])
+local unpack={string.unpack("s1s1s2",eventData[5])}
 local leftSample,rightSample=unpack[3]:sub(1,6000),unpack[3]:sub(6001,12000)
 local leftAudio,rightAudio=decoders.left(leftSample),decoders.right(rightSample)
 peripheral.call("left","playAudio",leftAudio)
