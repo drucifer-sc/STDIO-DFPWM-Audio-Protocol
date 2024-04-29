@@ -1,5 +1,5 @@
 --Broadcast receiver
---A much more fleshed out receiver for SDAP; Usage: script[.lua] <PID:1000-65535> <FREQ:65500-65531>
+--A much more fleshed out receiver for SDAP; Usage: receiver[.lua] <PID:1000-65535> <FREQ:65500-65531>
 --Keyboard inputs: +/- (PID stepping), PgUp/PgDn (PID Seek), L (list discovered stations and relevant data), R (resets playback)
 settings.define("cc.drucifer.sdap.receiver.speaker.left",{description="Provide the name of the left speaker",type="string",default="left"})
 settings.define("cc.drucifer.sdap.receiver.speaker.right",{description="Provide the name of the right speaker",type="string",default="right"})
