@@ -13,6 +13,8 @@ local dfpwm=require("cc.audio.dfpwm")
 local ldec,rdec=dfpwm.make_decoder(),dfpwm.make_decoder()
 if not args[1] then print("No Program ID (PID) provided to tune!") return end
 if 0+args[1] >= 1000 and 0+args[1] <= 65535 then pid=0+args[1] end
+local arg2=args[2] and tonumber(args[2])
+frequency=assert(arg2 and arg2>=65500 and arg2<=65531) and arg2,"Frequency outside of spec (65500-65531)")
 if args[2] then
   if 0+args[2]>=65500 and 0+args[2]<=65531 then
     frequency=0+args[2]
