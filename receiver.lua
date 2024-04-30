@@ -5,9 +5,7 @@ settings.define("cc.drucifer.sdap.receiver.speaker.left",{description="Provide t
 settings.define("cc.drucifer.sdap.receiver.speaker.right",{description="Provide the name of the right speaker",type="string",default="right"})
 local os,term,peripheral,math=_G.os,_G.term,_G.peripheral,_G.math --Down With Global Facism, Join The Local Revolution
 local args={...}
-local modems={peripheral.find("modem")}
-if not #modems then print("No modem found") return end
-repeat loops=(loops and loops+1 or 1) modem=modems[loops] until(modem.isWireless()) loops=nil
+local modem=peripheral.find("modem",function(n,dev)return dev.isWireless()end)
 print("Wireless modem found:",peripheral.getName(modem))
 local frequency=65500
 local pid=0
