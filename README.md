@@ -49,12 +49,12 @@ local programName="Sample Program" --Set the program name to use (you may update
 local sampleFiles={left=fs.open("left.dfpwm","rb"),right=fs.open("right.dfpwm","rb")} --Load files in binary mode to ensure data does not get mangled with unwanted UTF-8 conversion
 local leftChannel,rightChannel=sampleFiles.left:readAll(),samplefiles.right:readAll() --Dump contents into string buffers
 if #leftChannel>0 and #rightChannel>0 and #leftChannel==#rightChannel then
-sampleFiles.left.close() sampleFiles.right.close() --Clean up our mess
+  sampleFiles.left.close() sampleFiles.right.close() --Clean up our mess
 end
 for i=1,#leftChannel,6000 do
-local leftSample,rightSample=leftChannel:sub(i,i+5999),rightChannel:sub(i,i+5999)
-modem.transmit(sdapChan,sdapPID,string.pack("s1s1s2",channelName,programName,leftSample..rightSample))
-sleep(1)
+  local leftSample,rightSample=leftChannel:sub(i,i+5999),rightChannel:sub(i,i+5999)
+  modem.transmit(sdapChan,sdapPID,string.pack("s1s1s2",channelName,programName,leftSample..rightSample))
+  sleep(1)
 end
 ```
 
@@ -63,20 +63,20 @@ Example modem_message receiver snippet, minimum code required to receive and lis
 local listen,dfpwm={ch=65500,id=1000},require("cc.audio.dfpwm")
 local decoders={left=dfpwm.make_decoder(),right=dfpwm.make_decoder()}
 while not modem do --Find a wireless modem to listen with
-for _,dev in ipairs({peripheral.find("modem")}) do
-if dev.isWireless and dev.isWireless() then modem=dev end
-end
+  for _,dev in ipairs({peripheral.find("modem")}) do
+    if dev.isWireless and dev.isWireless() then modem=dev end
+  end
 end
 modem.open(listen.ch)
 while true do
-local eventData={os.pullEvent("modem_message")}
-if eventData[3]==listen.ch and eventData[4]==listen.id then
-local unpack={string.unpack("s1s1s2",eventData[5])}
-local leftSample,rightSample=unpack[3]:sub(1,6000),unpack[3]:sub(6001,12000)
-local leftAudio,rightAudio=decoders.left(leftSample),decoders.right(rightSample)
-peripheral.call("left","playAudio",leftAudio)
-peripheral.call("right","playAudio",rightAudio)
-end
+  local eventData={os.pullEvent("modem_message")}
+  if eventData[3]==listen.ch and eventData[4]==listen.id then
+    local unpack={string.unpack("s1s1s2",eventData[5])}
+    local leftSample,rightSample=unpack[3]:sub(1,6000),unpack[3]:sub(6001,12000)
+    local leftAudio,rightAudio=decoders.left(leftSample),decoders.right(rightSample)
+    peripheral.call("left","playAudio",leftAudio)
+    peripheral.call("right","playAudio",rightAudio)
+  end
 end
 ```
 
